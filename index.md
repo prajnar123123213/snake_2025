@@ -5,4 +5,6 @@ description: Home Page
 hide: true
 ---
 
-My journey starts here - Kickin' Projects 2.3 R100
+New Kasm Test
+
+My journey starts here - Kickin' Projects 2.3
