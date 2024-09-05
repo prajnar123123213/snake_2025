@@ -5,4 +5,4 @@ description: Home Page
 hide: true
 ---
 
-My journey starts here - Kickin' Projects 2.3
+My journey starts here - Kickin' Projects 2.3 R100
