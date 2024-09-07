@@ -89,6 +89,7 @@ code --install-extension eamodio.gitlens
 code --install-extension ms-python.python
 code --install-extension ms-python.vscode-python-pack
 code --install-extension ms-python.vscode-pylance
+code --install-extension donjayamanne.python-extension-pack
 
 # Jupyter VSCode Extension
 code --install-extension ms-toolsai.jupyter
