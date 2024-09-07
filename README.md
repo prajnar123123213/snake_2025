@@ -1,33 +1,36 @@
 # Introduction
 
-Nighthawk Pages is a project designed to support students in their Computer Science and Software Engineering education. It offers a wide range of resources including tech talks, code examples, and educational blogs.
+This is a custom project derived from Nighthawk Pages. It is a personal adaptation and is intended to contain summary of my summary of classroom tech talks and my personal coding work.
 
-GitHub Pages can be customized by the blogger to support computer science learnings as the student works through the pathway of using Javascript, Python/Flask, Java/Spring.  
+This project is customized to support my computer science learnings of using Javascript, Python, and Java. 
 
-## Student Requirements
+As a student in Del Norte CompSci I am required to revise my personal GitHub Pages at each midterm and final.  My GitHub pages does and will contain a compilation of personal work performed within each grading period (Sprint)
 
-Del Norte HS students will be required to review their personal GitHub Pages at each midterm and final.  This review will contain a compilation of personal work performed within each significant grading period.
+In general, this blog does and will contain lessons, hacks, coding work (JavaScript, Python, and Java).   The project also serves function of presenting games and the frontend of full-stack applications.
 
-In general, Students and Teachers are expected to use GitHub pages to build lessons, complete classroom hacks, perform work on JavaScript games, and serve as a frontend to full-stack applications.
+---
 
-Exchange of information could be:
+## Classroom Exchange
+
+Exchanging information between others using similar Nighthawk Pages projects...
 
 1. sharing a file:  `wget "raw-link.ipynb"
-2. creating a template from this repository
-3. sharing a fork among team members
+2. dragging and dropping files between VSCode projects
+2. creating a template from this repository, making a pull request
+3. sharing a fork of this project amongst team members
 4. etc.
 
 ---
 
 ## History
 
-This project is in its 3rd revision (aka 3.0).
+This project is created from [Nighthawk Coders](https://github.com/nighthawkcoders/student_2025) 
 
 The project was initially based on Fastpages. But this project has diverged from those roots into an independent entity.  The decision to separate from Fastpages was influenced by the deprecation of Fastpages by authors.  It is believed by our community that the authors of fastpages turned toward Quatro.  After that change of direction fastpages did not align with the Teacher's goals and student needs. The Nighthawk Pages project has more of a raw development blogging need.
 
 ### License
 
-The Apache license has its roots in Fastpages.  Thus, it carries its license forward.  However, most of the code is likely unrecognizable from those roots.
+The [Apache license](https://github.com/nighthawkcoders/student_2025/blob/main/LICENSE) has its roots in Fastpages.  Thus, it carries Appache license forward.  However, most of the code is likely unrecognizable from those roots.
 
 ### Key Features
 
@@ -37,7 +40,7 @@ The Apache license has its roots in Fastpages.  Thus, it carries its license for
 
 ### Contributions
 
-- **Notable Contributions**: Highlights significant contributions to the project, including theme development, search and tagging functionality, GitHub API integration, and the incorporation of GitHub Projects into GitHub pages. Contributors such as Tirth Thakker, Mirza Beg, and Toby Ledder have played crucial roles in these developments.
+- **Notable Contributions**: See [Nighthawk Pages README](https://github.com/nighthawkcoders/student_2025/blob/main/README.md)
 
 - **Blog Contributions**:  Often students contribute articles and blogs to this project.  Their names are typically listed in the front matter of their contributing post.
 
@@ -59,7 +62,7 @@ github_repo: "student_2025"
 baseurl: "/student_2025"
 ```
 
-**Set Repository Name in Makefile**: Adjust the `REPO_NAME` variable in your Makefile to match your GitHub repository's name. This action facilitates the automatic updating of posts and notebooks on your local development server, improving the development process.
+**Set Repository Name in Makefile**: Adjust the `REPO_NAME` variable in your Makefile to match your GitHub repository's name. This action facilitates the automatic updating of posts and notebooks on your local development server, improving the development process.  Changing your port number can really help avoid confusion when trying to run multiple projects on your personal machine.
 
 ```make
 # Configuration, override port with usage: make PORT=4200
@@ -88,21 +91,20 @@ Quick start.  A quick start below is a reminder, but is dependent on your knowle
 Run these commands to obtain the project, then locate into the project directory with the terminal, install an extensive set of tools, and make.
 
 ```bash
-git clone <this-repo> # git clone https://github.com/nighthawkcoders/student_2025.git 
-cd <repo-dir>/scripts # cd student_2025
+git clone <this-repo> # git clone https://github.com/nighthawkcoders/john_2025.git 
 ```
 
 #### Windows WSL and/or Ubuntu Users
 
-- Execute the script: `./activate_ubuntu.sh`
+- Execute the script: `./scripts/activate_ubuntu.sh`
 
 #### macOS Users
 
-- Execute the script: `./activate_macos.sh`
+- Execute the script: `./scripts/activate_macos.sh`
 
 #### Kasm Cloud Desktop Users
 
-- Execute the script: `./activate.sh`
+- Execute the script: `./scripts/activate.sh`
 
 ## Run Server on localhost
 
@@ -110,19 +112,22 @@ To preview the project you will need to "make" the project.
 
 ### Bundle install
 
-The very first time you clone run project you will need to run this Ruby command as the final part of your setup.
+The very first time you clone run project you will need to run this command as the final part of your setup, creating virtual environment and setting up custom packages.
 
 ```bash
-bundle install
+./scripts/venv.sh
 ```
 
 ### Start the Server  
 
+As running sever has Python dependencies it is required to run the project out of a virtual environment.
+
 This requires running terminal commands `make`, `make stop`, `make clean`, or `make convert` to manage the running server.  Logging of details will appear in the terminal.   A `Makefile` has been created in the project to support commands and start processes.
 
-Start the server, this is the best choice for initial and iterative development.  Note. after the initial `make`, you should see files automatically refresh in the terminal on VSCode save.
+Start the server, this is the best command choice for initial and iterative development.  Note. after the initial `make`, you should see files automatically refresh in the terminal as they are saved VSCode save.
 
   ```bash
+  source venv/bin/activate
   make
   ```
 
@@ -132,7 +137,7 @@ Start the preview server in the terminal,
 The terminal output from `make` shows the server address. "Cmd" or "Ctl" click the http location to open the preview server in a browser. Here is an example Server address message, click on the Server address to load:...
 
   ```text
-  http://0.0.0.0:4100/student_2025/
+  http://0.0.0.0:4100/john_2025/
   ```
 
 ### Regeneration of web application
@@ -247,15 +252,9 @@ In the front matter, you can also define things like a title and description for
   layout: post
   title: Jupyter Python Sample
   description: Example Blog!!!  This shows code and notes from hacks.
-  type: ccc
-  courses: { csa: {week: 5} }
   ---
   ```
 
 - The front matter will always have '---' at the top and bottom to distinguish it and each key-value pair will be separated by a ':'.
 
 - Here we can modify things like the title and description.
-
-- The type value will tell us which column this is going to appear under the time box supported pages.  The "ccc" stands for Code, Code, Code.
-
-- The courses will tell us which menu item it will be under, in this case, the `csa` menu, and the `week` tells it what row (week) it will appear under that menu.
