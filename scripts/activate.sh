@@ -98,3 +98,6 @@ code --install-extension ms-python.vscode-pylance
 
 # Jupyter VSCode Extension
 code --install-extension ms-toolsai.jupyter
+
+# GitHub Copilot Extension
+code --install-extension GitHub.copilot
