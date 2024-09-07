@@ -69,9 +69,9 @@ fi
 
 add_to_rc 'alias code="code --no-sandbox"'
 add_to_rc 'alias venv="source venv/bin/activate"'
-add_to_rc 'git config --global user.name $GIT_USER_NAME'
-add_to_rc 'git config --global user.email $GIT_USER_EMAIL'
-add_to_rc 'export GITHUB_TOKEN=$GITHUB_TOKEN'
+add_to_rc "git config --global user.name $GIT_USER_NAME"
+add_to_rc "git config --global user.email $GIT_USER_EMAIL"
+add_to_rc "export GITHUB_TOKEN=$GITHUB_TOKEN"
 
 #### Github Pages Local Build support
 echo "=== GitHub pages build tools  ==="
