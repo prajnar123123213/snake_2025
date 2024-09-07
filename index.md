@@ -5,4 +5,4 @@ description: Home Page
 hide: true
 ---
 
-My journey starts here version 2.4
+My journey starts here version 2.5
