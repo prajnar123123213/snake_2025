@@ -81,12 +81,6 @@ add_to_rc 'export PATH="$HOME/gems/bin:$PATH"'
 echo "=== Gem install starting, thinking... ==="
 gem install jekyll bundler
 
-# Java VSCode extensions
-code --install-extension vscjava.vscode-java-pack --pre-release
-code --install-extension redhat.java --pre-release
-code --install-extension vscjava.vscode-java-debug --pre-release
-code --install-extension vscjava.vscode-java-test --pre-release
-
 # GitHub VSCode extensiions
 code --install-extension github.vscode-github-actions
 code --install-extension eamodio.gitlens
