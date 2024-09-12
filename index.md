@@ -5,4 +5,6 @@ description: Home Page
 hide: true
 ---
 
-My journey starts here version 2.9 close and open worked.
+{% include nav/home.html %}
+
+My journey starts here version 2.4
