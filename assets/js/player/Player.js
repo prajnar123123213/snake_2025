@@ -3,7 +3,7 @@ import GameEnv from './GameEnv.js';
 class Player {
     constructor() {
         // Initialize player properties
-        this.position = { x: GameEnv.innerWidth / 2, y: GameEnv.bottom - 50 };
+        this.position = { x: GameEnv.innerWidth / 2, y: GameEnv.innerHeight - 50 };
         this.velocity = { x: 0, y: 0 };
         this.width = 50;
         this.height = 50;
@@ -22,13 +22,13 @@ class Player {
         this.position.y += this.velocity.y;
 
         // Ensure the player stays within the canvas boundaries
-        if (this.position.y + this.height > GameEnv.bottom) {
-            this.position.y = GameEnv.bottom - this.height;
+        if (this.position.y + this.height > GameEnv.innerHeight) {
+            this.position.y = GameEnv.innerHeight - this.height;
             this.velocity.y = 0;
         }
 
-        if (this.position.y < GameEnv.top) {
-            this.position.y = GameEnv.top;
+        if (this.position.y < 0) {
+            this.position.y = 0;
             this.velocity.y = 0;
         }
 

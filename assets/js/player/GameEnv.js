@@ -2,11 +2,9 @@ export class GameEnv {
     static canvas;
     static ctx;
     static innerWidth;
-    static prevInnerWidth;
     static innerHeight;
     static top;
     static bottom;
-    static prevBottom;
 
     constructor() {
         throw new Error('GameEnv is a static class and cannot be instantiated.');
@@ -24,14 +22,14 @@ export class GameEnv {
 
     static setBottom() {
         const footer = document.querySelector('footer');
-        this.bottom = footer ? this.innerHeight - footer.offsetHeight : this.innerHeight;
+        this.bottom = footer ? footer.offsetHeight : 0;
     }
 
     static initialize() {
-        this.innerWidth = window.innerWidth;
-        this.innerHeight = window.innerHeight;
         this.setTop();
         this.setBottom();
+        this.innerWidth = window.innerWidth;
+        this.innerHeight = window.innerHeight - this.top - this.bottom;
         this.size();
     }
 
