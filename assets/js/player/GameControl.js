@@ -40,28 +40,34 @@ const GameControl = {
 
 addEventListener('keydown', ({ keyCode }) => {
     switch (keyCode) {
-        case 65:
+        case 65: // 'A' key
             keys.left.pressed = true;
             break;
-        case 68:
+        case 68: // 'D' key
             keys.right.pressed = true;
             break;
-        case 87:
+        case 87: // 'W' key
             player.velocity.y -= 20;
+            break;
+        case 83: // 'S' key
+            player.velocity.y += 20;
             break;
     }
 });
 
 addEventListener('keyup', ({ keyCode }) => {
     switch (keyCode) {
-        case 65:
+        case 65: // 'A' key
             keys.left.pressed = false;
             break;
-        case 68:
+        case 68: // 'D' key
             keys.right.pressed = false;
             break;
-        case 87:
-            player.velocity.y = -20;
+        case 87: // 'W' key
+            player.velocity.y = 0;
+            break;
+        case 83: // 'S' key
+            player.velocity.y = 0;
             break;
     }
 });
