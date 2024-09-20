@@ -1,7 +1,7 @@
+import GameEnv from './GameEnv.js';
 import Player from './Player.js';
 
-let canvas = document.getElementById('canvas');
-let ctx = canvas.getContext('2d');
+GameEnv.setCanvas();
 let player = new Player();
 
 let keys = {
@@ -17,21 +17,15 @@ const GameControl = {
     // Initialize the game
     init: function() {
         console.log("Game initialized");
-        // Set the canvas dimensions
-        canvas.width = 650;
-        canvas.height = 400;
-        // Define gravity value
-        let gravity = 1.5;
-    
-        // Add your initialization code here
+        GameEnv.initialize();
     },
 
     // Start the game
     start: function() {
         console.log("Game started");
         requestAnimationFrame(GameControl.start); // Correctly call the start method
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        player.update(ctx); // Pass the canvas context to the update method
+        GameEnv.ctx.clearRect(0, 0, canvas.width, canvas.height);
+        player.update(GameEnv.ctx);
         if (keys.right.pressed && player.position.x + player.width <= canvas.width - 50) {
             player.velocity.x = 15;
         } else if (keys.left.pressed && player.position.x >= 50) {
