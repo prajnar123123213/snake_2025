@@ -16,19 +16,19 @@ const GameControl = {
     player: null, // Define the player object.
 
     start: function() {
-        GameEnv.initialize();
+        GameEnv.start(); // Must be 1st as it sets the canvas, ie Game World.
         this.player = new Player();
         this.gameLoop();
     },
 
     gameLoop: function() {
-        GameEnv.ctx.clearRect(0, 0, GameEnv.canvas.width, GameEnv.canvas.height);
+        GameEnv.clear(); // Clear the canvas, removes trails before new drawing.
         this.player.update();
         requestAnimationFrame(this.gameLoop.bind(this));
     },
 
     resize: function() {
-        GameEnv.resize();
+        GameEnv.resize(); // Adapts the canvas to the new window size, ie a new Game World.
         this.player.resize();
     }
 };

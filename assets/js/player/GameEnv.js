@@ -26,11 +26,15 @@ class GameEnv {
     }
 
     /**
-     * Initializes the game environment by setting up the canvas and calculating dimensions.
+     * Start the game environment by setting up the canvas and calculating dimensions.
+     * 
+     * This method sets the canvas element, calculates the top and bottom offsets,
+     * and determines the inner width and height of the game area. It then sizes the canvas
+     * to fit within the calculated dimensions.
      * 
      * @static
      */
-    static initialize() {
+    static start() {
         this.setCanvas();
         this.setTop();
         this.setBottom();
@@ -91,6 +95,17 @@ class GameEnv {
      */
     static resize() {
         this.initialize();
+    }
+
+    /**
+     * Clears the canvas.
+     * 
+     * This method clears the entire canvas, making it ready for the next frame.
+     * 
+     * @static
+     */
+    static clear() {
+        this.ctx.clearRect(0, 0, this.innerWidth, this.innerHeight);
     }
 }
 
