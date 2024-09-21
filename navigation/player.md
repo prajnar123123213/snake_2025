@@ -22,9 +22,8 @@ permalink: /player/
 <canvas id='gameCanvas'></canvas>
 
 <script type="module">
-    import GameControl from '/john_2025/assets/js/player/GameControl.js';
+    import GameControl from '{{site.baseurl}}/assets/js/player/GameControl.js';
 
-    GameControl.init();
     GameControl.start();
 
 </script>

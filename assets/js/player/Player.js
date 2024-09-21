@@ -1,66 +1,72 @@
 import GameEnv from './GameEnv.js';
 
 class Player {
+    /**
+     * The constructor method is called when a new Player object is created
+     */
     constructor() {
+        // Size the player object
         this.resize();
+        // Keep track of the player's position and velocity
         this.position = { x: 0, y: GameEnv.innerHeight - this.size }; 
         this.velocity = { x: 0, y: 0 };
-        this.keys = {
-            right: { pressed: false },
-            left: { pressed: false }
-        };
-
-        // Bind event listeners
+        // Bind event listeners to allow object movement
         this.bindEventListeners();
     }
 
+    /**
+     * The resize method is called by the constructor and when the window is resized
+     */
     resize() { 
-        this.size = GameEnv.innerWidth / 25;
-        this.width = this.size;
-        this.height = this.size;
+        // Object is scaled to 1/25th of the height of the canvas
+        this.size = GameEnv.innerHeight / 25;
+        // Velocity steps are 1/100th of the width and height of the canvas  
         this.xVelocity = GameEnv.innerWidth / 100;
         this.yVelocity = GameEnv.innerHeight / 100;
+        // Object is a square
+        this.width = this.size;
+        this.height = this.size;
     }
 
+    /**
+     * The draw method is called by the update method
+     */
     draw() {
+        // Player object is a red square
         GameEnv.ctx.fillStyle = 'red';
         GameEnv.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
     }
 
+    /**
+     * The update method is called repeatedly by the game loop
+     */
     update() {
+        // Update begins by drawing the player object
         this.draw();
 
-        // Update position with velocity
+        // Update or change position according to velocity events
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
 
         // Ensure the player stays within the canvas boundaries
+        // Bottom of the canvas
         if (this.position.y + this.height > GameEnv.innerHeight) {
             this.position.y = GameEnv.innerHeight - this.height;
             this.velocity.y = 0;
         }
-
+        // Top of the canvas
         if (this.position.y < 0) {
             this.position.y = 0;
             this.velocity.y = 0;
         }
-
+        // Right of the canvas
         if (this.position.x + this.width > GameEnv.innerWidth) {
             this.position.x = GameEnv.innerWidth - this.width;
             this.velocity.x = 0;
         }
-
+        // Left of the canvas
         if (this.position.x < 0) {
             this.position.x = 0;
-            this.velocity.x = 0;
-        }
-
-        // Handle horizontal movement
-        if (this.keys.right.pressed && this.position.x + this.width <= GameEnv.innerWidth - this.size) {
-            this.velocity.x = this.xVelocity;
-        } else if (this.keys.left.pressed && this.position.x >= this.size) {
-            this.velocity.x = -this.xVelocity;
-        } else {
             this.velocity.x = 0;
         }
     }
@@ -74,36 +80,38 @@ class Player {
         addEventListener('keyup', this.handleKeyUp.bind(this));
     }
 
+    // Key down events change the velocity of the player object
     handleKeyDown({ keyCode }) {
         switch (keyCode) {
             case 87: // 'W' key
                 this.velocity.y -= this.yVelocity;
                 break;
             case 65: // 'A' key
-                this.keys.left.pressed = true;
+                this.velocity.x -= this.xVelocity;
                 break;
             case 83: // 'S' key
                 this.velocity.y += this.yVelocity;
                 break;
             case 68: // 'D' key
-                this.keys.right.pressed = true;
+                this.velocity.x += this.xVelocity;
                 break;
         }
     }
 
+    // Key up events stop the velocity 
     handleKeyUp({ keyCode }) {
         switch (keyCode) {
             case 87: // 'W' key
                 this.velocity.y = 0;
                 break;
             case 65: // 'A' key
-                this.keys.left.pressed = false;
+                this.velocity.x = 0;
                 break;
             case 83: // 'S' key
                 this.velocity.y = 0;
                 break;
             case 68: // 'D' key
-                this.keys.right.pressed = false;
+                this.velocity.x = 0;
                 break;
         }
     }
