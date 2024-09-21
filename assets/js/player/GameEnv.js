@@ -94,7 +94,7 @@ class GameEnv {
      * @static
      */
     static resize() {
-        this.initialize();
+        this.start();
     }
 
     /**
