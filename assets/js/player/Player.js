@@ -1,5 +1,27 @@
 import GameEnv from './GameEnv.js';
 
+/**
+ * Player is a dynamic class that manages the data and events for a player object.
+ * 
+ * The focus of this class is to handle the player's state, rendering, and key events.
+ * 
+ * This class uses a more classic Java technique by employing a class pattern.
+ * 
+ * @class Player
+ * @property {Object} position - The current position of the player.
+ * @property {Object} velocity - The current velocity of the player.
+ * @property {number} size - The size of the player.
+ * @property {number} width - The width of the player.
+ * @property {number} height - The height of the player.
+ * @property {number} xVelocity - The velocity of the player along the x-axis.
+ * @property {number} yVelocity - The velocity of the player along the y-axis.
+ * @method resize - Resizes the player based on the game environment.
+ * @method draw - Draws the player on the canvas.
+ * @method update - Updates the player's position and ensures it stays within the canvas boundaries.
+ * @method bindEventListeners - Binds key event listeners to handle player movement.
+ * @method handleKeyDown - Handles key down events to change the player's velocity.
+ * @method handleKeyUp - Handles key up events to stop the player's velocity.
+ */
 class Player {
     /**
      * The constructor method is called when a new Player object is created
@@ -14,9 +36,6 @@ class Player {
         this.bindEventListeners();
     }
 
-    /**
-     * The resize method is called by the constructor and when the window is resized
-     */
     resize() { 
         // Object is scaled to 1/25th of the height of the canvas
         this.size = GameEnv.innerHeight / 25;
@@ -28,18 +47,12 @@ class Player {
         this.height = this.size;
     }
 
-    /**
-     * The draw method is called by the update method
-     */
     draw() {
         // Player object is a red square
         GameEnv.ctx.fillStyle = 'red';
         GameEnv.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
     }
 
-    /**
-     * The update method is called repeatedly by the game loop
-     */
     update() {
         // Update begins by drawing the player object
         this.draw();
@@ -73,14 +86,13 @@ class Player {
 
     /* These event listeners are used to handle player movement
         * The key events perform callbacks to handle player movement
-        * The .bind(this) method ensures it refers to the Player class
+        * The .bind(this) method ensures it refers to the player object
     */
     bindEventListeners() {
         addEventListener('keydown', this.handleKeyDown.bind(this));
         addEventListener('keyup', this.handleKeyUp.bind(this));
     }
 
-    // Key down events change the velocity of the player object
     handleKeyDown({ keyCode }) {
         switch (keyCode) {
             case 87: // 'W' key
@@ -98,7 +110,6 @@ class Player {
         }
     }
 
-    // Key up events stop the velocity 
     handleKeyUp({ keyCode }) {
         switch (keyCode) {
             case 87: // 'W' key

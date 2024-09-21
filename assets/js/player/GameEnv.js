@@ -1,4 +1,13 @@
-export class GameEnv {
+/**
+ * GameEnv is a static class that manages the game environment
+ * 
+ * The focus of the file is the canvas and its dimensions.
+ * 
+ * This class uses a more classic Java technique by employing a static class pattern.
+ * 
+ * @class GameEnv
+ */
+class GameEnv {
     static canvas;
     static ctx;
     static innerWidth;
@@ -6,26 +15,23 @@ export class GameEnv {
     static top;
     static bottom;
 
+    /**
+     * Private constructor to prevent instantiation.
+     * 
+     * @constructor
+     * @throws {Error} Throws an error if an attempt is made to instantiate the class.
+     */
     constructor() {
         throw new Error('GameEnv is a static class and cannot be instantiated.');
     }
 
-    static setCanvas() {
-        this.canvas = document.getElementById('gameCanvas');
-        this.ctx = this.canvas.getContext('2d');
-    }
-
-    static setTop() {
-        const header = document.querySelector('header');
-        this.top = header ? header.offsetHeight : 0;
-    }
-
-    static setBottom() {
-        const footer = document.querySelector('footer');
-        this.bottom = footer ? footer.offsetHeight : 0;
-    }
-
+    /**
+     * Initializes the game environment by setting up the canvas and calculating dimensions.
+     * 
+     * @static
+     */
     static initialize() {
+        this.setCanvas();
         this.setTop();
         this.setBottom();
         this.innerWidth = window.innerWidth;
@@ -33,6 +39,41 @@ export class GameEnv {
         this.size();
     }
 
+    /**
+     * Sets the canvas element and its 2D rendering context.
+     * 
+     * @static
+     */
+    static setCanvas() {
+        this.canvas = document.getElementById('gameCanvas');
+        this.ctx = this.canvas.getContext('2d');
+    }
+
+    /**
+     * Sets the top offset based on the height of the header element.
+     * 
+     * @static
+     */
+    static setTop() {
+        const header = document.querySelector('header');
+        this.top = header ? header.offsetHeight : 0;
+    }
+
+    /**
+     * Sets the bottom offset based on the height of the footer element.
+     * 
+     * @static
+     */
+    static setBottom() {
+        const footer = document.querySelector('footer');
+        this.bottom = footer ? footer.offsetHeight : 0;
+    }
+
+    /**
+     * Sizes the canvas to fit within the calculated dimensions.
+     * 
+     * @static
+     */
     static size() {
         this.canvas.width = this.innerWidth;
         this.canvas.height = this.innerHeight;
@@ -43,6 +84,11 @@ export class GameEnv {
         this.canvas.style.top = `${this.top}px`;
     }
 
+    /**
+     * Resizes the game environment by reinitializing it.
+     * 
+     * @static
+     */
     static resize() {
         this.initialize();
     }

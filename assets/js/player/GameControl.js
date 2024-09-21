@@ -16,7 +16,6 @@ const GameControl = {
     player: null, // Define the player object.
 
     start: function() {
-        GameEnv.setCanvas();
         GameEnv.initialize();
         this.player = new Player();
         this.gameLoop();
