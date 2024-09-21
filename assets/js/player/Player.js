@@ -2,14 +2,9 @@ import GameEnv from './GameEnv.js';
 
 class Player {
     constructor() {
-        // Initialize player properties
-        this.size = 50;
-        this.xVelocity = 15;
-        this.yVelocity = 10;
-        this.position = { x: GameEnv.innerWidth / 2, y: GameEnv.innerHeight - this.size };
+        this.resize();
+        this.position = { x: 0, y: GameEnv.innerHeight - this.size }; 
         this.velocity = { x: 0, y: 0 };
-        this.width = this.size;
-        this.height = this.size;
         this.keys = {
             right: { pressed: false },
             left: { pressed: false }
@@ -19,13 +14,21 @@ class Player {
         this.bindEventListeners();
     }
 
-    draw(ctx) {
-        ctx.fillStyle = 'red';
-        ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    resize() { 
+        this.size = GameEnv.innerWidth / 25;
+        this.width = this.size;
+        this.height = this.size;
+        this.xVelocity = GameEnv.innerWidth / 100;
+        this.yVelocity = GameEnv.innerHeight / 100;
     }
 
-    update(ctx) {
-        this.draw(ctx);
+    draw() {
+        GameEnv.ctx.fillStyle = 'red';
+        GameEnv.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
+
+    update() {
+        this.draw();
 
         // Update position with velocity
         this.position.x += this.velocity.x;

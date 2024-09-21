@@ -27,8 +27,4 @@ permalink: /player/
     GameControl.init();
     GameControl.start();
 
-    // Resize canvas to fit the window
-    window.addEventListener('resize', () => {
-        GameControl.resize();
-    });
 </script>
