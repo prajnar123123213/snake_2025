@@ -1,8 +1,8 @@
 import GameEnv from './GameEnv.js';
 
 // Define SCALE_FACTOR and STEP_FACTOR as non-mutable constants
-const SCALE_FACTOR = 20; // 1/20th of the height of the canvas
-const STEP_FACTOR = 100; // 1/100th, or 100 steps up and across the canvas
+const SCALE_FACTOR = 10; // 1/nth of the height of the canvas
+const STEP_FACTOR = 100; // 1/nth, or N steps up and across the canvas
 
 /**
  * Player is a dynamic class that manages the data and events for a player object.

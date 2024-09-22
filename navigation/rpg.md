@@ -10,11 +10,11 @@ permalink: /rpg/
     import GameControl from '{{site.baseurl}}/assets/js/rpg/GameControl.js';
 
     // Background data
-    const background_src = "{{site.baseurl}}/images/rpg/water.png";
-    const background_data = {
+    const image_src = "{{site.baseurl}}/images/rpg/water.png";
+    const image_data = {
         pixels: {height: 580, width: 1038}
     };
-    const background = {src: background_src, data: background_data};
+    const image = {src: image_src, data: image_data};
 
     // Sprite data
     const sprite_src = "{{site.baseurl}}/images/rpg/turtle.png";
@@ -29,7 +29,10 @@ permalink: /rpg/
     const sprite = {src: sprite_src, data: sprite_data};
 
     // Assets for game
-    const assets = {background: background, sprite: sprite}
+    //const assets = {}
+    //const assets = {image: image}
+    const assets = {sprite: sprite}
+    //const assets = {image: image, sprite: sprite}
 
     // Start game engine
     GameControl.start(assets);

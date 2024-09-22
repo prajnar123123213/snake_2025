@@ -24,7 +24,7 @@ export class Background {
             ctx.drawImage(this.image, 0, 0, width, height);
         } else {
             // Fill the canvas with white if no background image is provided
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = '#87CEEB';
             ctx.fillRect(0, 0, width, height);
         }
     }
