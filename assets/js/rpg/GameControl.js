@@ -19,12 +19,11 @@ import Player from './Player.js';
  * @property {function} resize - Resize the canvas and player object when the window is resized.
  */
 const GameControl = {
-    player: null, // Define the player object.
 
-    start: function(background, sprite = null) {
+    start: function(assets = {}) {
         GameEnv.create(); // Create the Game World, this is pre-requisite for all game objects.
-        this.background = new Background(background);
-        this.player = new Player(sprite);
+        this.background = new Background(null);
+        this.player = new Player(assets.player || null);
         this.gameLoop();
     },
 

@@ -4,21 +4,19 @@ title: RPG
 permalink: /rpg/
 ---
 
-<style>
-    #gameCanvas {
-        margin: 0;
-        border: 1px solid white;
-        display: block;
-    }
-</style>
-
 <canvas id='gameCanvas'></canvas>
 
 <script type="module">
     import GameControl from '{{site.baseurl}}/assets/js/rpg/GameControl.js';
 
-    // Game data
-    const background = "{{site.baseurl}}/images/rpg/water.png";
+    // Background data
+    const background_src = "{{site.baseurl}}/images/rpg/water.png";
+    const background_data = {
+        pixels: {height: 580, width: 1038}
+    };
+    const background = {src: background_src, data: background_data};
+
+    // Sprite data
     const sprite_src = "{{site.baseurl}}/images/rpg/turtle.png";
     const sprite_data = {
         pixels: {height: 280, width: 256},
@@ -30,6 +28,9 @@ permalink: /rpg/
     };
     const sprite = {src: sprite_src, data: sprite_data};
 
-    // Game engine
-    GameControl.start(background, sprite);
+    // Assets for game
+    const assets = {background: background, sprite: sprite}
+
+    // Start game engine
+    GameControl.start(assets);
 </script>
