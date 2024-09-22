@@ -2,7 +2,7 @@ import GameEnv from './GameEnv.js';
 
 // Define SCALE_FACTOR and STEP_FACTOR as non-mutable constants
 const SCALE_FACTOR = 10; // 1/nth of the height of the canvas
-const STEP_FACTOR = 100; // 1/nth, or N steps up and across the canvas
+const STEP_FACTOR = 1000; // 1/nth, or N steps up and across the canvas
 
 /**
  * Player is a dynamic class that manages the data and events for a player object.
@@ -29,6 +29,7 @@ const STEP_FACTOR = 100; // 1/nth, or N steps up and across the canvas
  * @property {number} frameIndex - The current frame index for animation.
  * @property {number} frameCount - The total number of frames for each direction.
  * @property {Object} spriteData - The data for the sprite sheet.
+ * @property {number} frameCounter - Counter to control the animation rate.
  * @method resize - Resizes the player based on the game environment.
  * @method draw - Draws the player on the canvas.
  * @method update - Updates the player's position and ensures it stays within the canvas boundaries.
@@ -63,8 +64,9 @@ class Player {
             this.spriteSheet.src = sprite.src;
 
             // Initialize animation properties
-            this.frameIndex = 0;
-            this.frameCount = sprite.data.orientation.columns; // Assuming columns represent frames
+            this.frameIndex = 0; // index reference to current frame
+            this.frameCount = sprite.data.orientation.columns; 
+            this.frameCounter = 0; // count each frame rate refresh
             this.direction = 'down'; // Initial direction
             this.spriteData = sprite.data;
         } else {
@@ -133,14 +135,18 @@ class Player {
                     break;
             }
 
+            // Draw the current frame of the sprite sheet
             GameEnv.ctx.drawImage(
                 this.spriteSheet,
-                frameX, frameY, frameWidth, frameHeight,
-                this.position.x, this.position.y, this.width, this.height
+                frameX, frameY, frameWidth, frameHeight, // Source rectangle
+                this.position.x, this.position.y, this.width, this.height // Destination rectangle
             );
 
-            // Update the frame index for animation
-            this.frameIndex = (this.frameIndex + 1) % this.frameCount;
+            // Update the frame index for animation at a slower rate
+            this.frameCounter++;
+            if (this.frameCounter % 50 === 0) {
+                this.frameIndex = (this.frameIndex + 1) % this.frameCount;
+            }
         } else {
             // Draw default red square
             GameEnv.ctx.fillStyle = 'red';
