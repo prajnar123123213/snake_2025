@@ -1,7 +1,7 @@
 ---
 layout: base
-title: Player
-permalink: /player/
+title: RPG
+permalink: /rpg/
 ---
 
 <style>
@@ -15,8 +15,8 @@ permalink: /player/
 <canvas id='gameCanvas'></canvas>
 
 <script type="module">
-    import GameControl from '{{site.baseurl}}/assets/js/player/GameControl.js';
+    import GameControl from '{{site.baseurl}}/assets/js/rpg/GameControl.js';
 
-    GameControl.start();
-
+    const background = "{{site.baseurl}}/images/rpg/water.png"
+    GameControl.start(background);
 </script>

@@ -37,7 +37,7 @@ class GameEnv {
     }
 
     /**
-     * Start the game environment by setting up the canvas and calculating dimensions.
+     * Create the game environment by setting up the canvas and calculating dimensions.
      * 
      * This method sets the canvas element, calculates the top and bottom offsets,
      * and determines the inner width and height of the game area. It then sizes the canvas
@@ -45,7 +45,7 @@ class GameEnv {
      * 
      * @static
      */
-    static start() {
+    static create() {
         this.setCanvas();
         this.setTop();
         this.setBottom();

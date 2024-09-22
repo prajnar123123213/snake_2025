@@ -1,4 +1,5 @@
 import GameEnv from './GameEnv.js';
+import Background from './Background.js';
 import Player from './Player.js';
 
 /**
@@ -20,14 +21,16 @@ import Player from './Player.js';
 const GameControl = {
     player: null, // Define the player object.
 
-    start: function() {
-        GameEnv.start(); // Must be 1st as it sets the canvas, ie Game World.
+    start: function(background) {
+        GameEnv.create(); // Create the Game World, this is pre-requisite for all game objects.
+        this.background = new Background(background);
         this.player = new Player();
         this.gameLoop();
     },
 
     gameLoop: function() {
-        GameEnv.clear(); // Clear the canvas, removes trails before new drawing.
+        GameEnv.clear(); // Clear the canvas
+        this.background.draw();
         this.player.update();
         requestAnimationFrame(this.gameLoop.bind(this));
     },
