@@ -60,7 +60,6 @@ class Player {
 
             // Initialize animation properties
             this.frameIndex = 0; // index reference to current frame
-            this.frameCount = sprite.data.orientation.columns; 
             this.frameCounter = 0; // count each frame rate refresh
             this.direction = 'down'; // Initial direction
             this.spriteData = sprite.data;
@@ -123,26 +122,18 @@ class Player {
      */
     draw() {
         if (this.spriteSheet) {
+            // Sprite Sheet frame size: pixels = total pixels / total frames
             const frameWidth = this.spriteData.pixels.width / this.spriteData.orientation.columns;
             const frameHeight = this.spriteData.pixels.height / this.spriteData.orientation.rows;
 
-            let frameX = this.frameIndex * frameWidth;
-            let frameY;
+            // Sprite Sheet direction data source (e.g., front, left, right, back)
+            const directionData = this.spriteData[this.direction];
 
-            switch (this.direction) {
-                case 'up':
-                    frameY = this.spriteData.back.row * frameHeight;
-                    break;
-                case 'down':
-                    frameY = this.spriteData.front.row * frameHeight;
-                    break;
-                case 'left':
-                    frameY = this.spriteData.left.row * frameHeight;
-                    break;
-                case 'right':
-                    frameY = this.spriteData.right.row * frameHeight;
-                    break;
-            }
+            // Sprite Sheet x and y declarations to store coordinates of current frame
+            let frameX, frameY;
+            // Sprite Sheet x and y current frame: coordinate = (index) * (pixels)
+            frameX = (directionData.start + this.frameIndex) * frameWidth;
+            frameY = directionData.row * frameHeight;
 
             // Draw the current frame of the sprite sheet
             GameEnv.ctx.drawImage(
@@ -154,7 +145,7 @@ class Player {
             // Update the frame index for animation at a slower rate
             this.frameCounter++;
             if (this.frameCounter % this.animationRate === 0) {
-                this.frameIndex = (this.frameIndex + 1) % this.frameCount;
+                this.frameIndex = (this.frameIndex + 1) % directionData.columns;
             }
         } else {
             // Draw default red square
