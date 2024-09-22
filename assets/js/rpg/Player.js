@@ -1,7 +1,7 @@
 import GameEnv from './GameEnv.js';
 
 // Define SCALE_FACTOR and STEP_FACTOR as non-mutable constants
-const SCALE_FACTOR = 25; // 1/25th of the height of the canvas
+const SCALE_FACTOR = 20; // 1/20th of the height of the canvas
 const STEP_FACTOR = 100; // 1/100th, or 100 steps up and across the canvas
 
 /**
@@ -25,6 +25,10 @@ const STEP_FACTOR = 100; // 1/100th, or 100 steps up and across the canvas
  * @property {number} height - The height of the player.
  * @property {number} xVelocity - The velocity of the player along the x-axis.
  * @property {number} yVelocity - The velocity of the player along the y-axis.
+ * @property {Image} spriteSheet - The sprite sheet image for the player.
+ * @property {number} frameIndex - The current frame index for animation.
+ * @property {number} frameCount - The total number of frames for each direction.
+ * @property {Object} spriteData - The data for the sprite sheet.
  * @method resize - Resizes the player based on the game environment.
  * @method draw - Draws the player on the canvas.
  * @method update - Updates the player's position and ensures it stays within the canvas boundaries.
@@ -35,8 +39,10 @@ const STEP_FACTOR = 100; // 1/100th, or 100 steps up and across the canvas
 class Player {
     /**
      * The constructor method is called when a new Player object is created.
+     * 
+     * @param {Object|null} sprite - The sprite data for the player. If null, a default red square is used.
      */
-    constructor() {
+    constructor(sprite = null) {
         // Initialize the player's scale based on the game environment
         this.scale = { width: GameEnv.innerWidth, height: GameEnv.innerHeight };
 
@@ -49,6 +55,22 @@ class Player {
 
         // Set the initial size and velocity of the player
         this.resize();
+
+        // Check if sprite data is provided
+        if (sprite) {
+            // Load the sprite sheet
+            this.spriteSheet = new Image();
+            this.spriteSheet.src = sprite.src;
+
+            // Initialize animation properties
+            this.frameIndex = 0;
+            this.frameCount = sprite.data.orientation.columns; // Assuming columns represent frames
+            this.direction = 'down'; // Initial direction
+            this.spriteData = sprite.data;
+        } else {
+            // Default to red square
+            this.spriteSheet = null;
+        }
 
         // Bind event listeners to allow object movement
         this.bindEventListeners();
@@ -86,11 +108,44 @@ class Player {
     /**
      * Draws the player on the canvas.
      * 
-     * This method renders the player as a red square on the canvas.
+     * This method renders the player using the sprite sheet if provided, otherwise a red square.
      */
     draw() {
-        GameEnv.ctx.fillStyle = 'red';
-        GameEnv.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+        if (this.spriteSheet) {
+            const frameWidth = this.spriteData.pixels.width / this.spriteData.orientation.columns;
+            const frameHeight = this.spriteData.pixels.height / this.spriteData.orientation.rows;
+
+            let frameX = this.frameIndex * frameWidth;
+            let frameY;
+
+            switch (this.direction) {
+                case 'up':
+                    frameY = this.spriteData.back.row * frameHeight;
+                    break;
+                case 'down':
+                    frameY = this.spriteData.front.row * frameHeight;
+                    break;
+                case 'left':
+                    frameY = this.spriteData.left.row * frameHeight;
+                    break;
+                case 'right':
+                    frameY = this.spriteData.right.row * frameHeight;
+                    break;
+            }
+
+            GameEnv.ctx.drawImage(
+                this.spriteSheet,
+                frameX, frameY, frameWidth, frameHeight,
+                this.position.x, this.position.y, this.width, this.height
+            );
+
+            // Update the frame index for animation
+            this.frameIndex = (this.frameIndex + 1) % this.frameCount;
+        } else {
+            // Draw default red square
+            GameEnv.ctx.fillStyle = 'red';
+            GameEnv.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+        }
     }
 
     /**
@@ -152,15 +207,19 @@ class Player {
         switch (keyCode) {
             case 87: // 'W' key
                 this.velocity.y -= this.yVelocity;
+                this.direction = 'up';
                 break;
             case 65: // 'A' key
                 this.velocity.x -= this.xVelocity;
+                this.direction = 'left';
                 break;
             case 83: // 'S' key
                 this.velocity.y += this.yVelocity;
+                this.direction = 'down';
                 break;
             case 68: // 'D' key
                 this.velocity.x += this.xVelocity;
+                this.direction = 'right';
                 break;
         }
     }

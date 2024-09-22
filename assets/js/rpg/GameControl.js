@@ -21,10 +21,10 @@ import Player from './Player.js';
 const GameControl = {
     player: null, // Define the player object.
 
-    start: function(background) {
+    start: function(background, sprite = null) {
         GameEnv.create(); // Create the Game World, this is pre-requisite for all game objects.
         this.background = new Background(background);
-        this.player = new Player();
+        this.player = new Player(sprite);
         this.gameLoop();
     },
 
