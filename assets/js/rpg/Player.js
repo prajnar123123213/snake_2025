@@ -1,8 +1,9 @@
 import GameEnv from './GameEnv.js';
 
-// Define SCALE_FACTOR and STEP_FACTOR as non-mutable constants
-const SCALE_FACTOR = 10; // 1/nth of the height of the canvas
-const STEP_FACTOR = 1000; // 1/nth, or N steps up and across the canvas
+// Define non-mutable constants as defaults
+const SCALE_FACTOR = 25; // 1/nth of the height of the canvas
+const STEP_FACTOR = 100; // 1/nth, or N steps up and across the canvas
+const ANIMATION_RATE = 1; // 1/nth of the frame rate
 
 /**
  * Player is a dynamic class that manages the data and events for a player object.
@@ -47,18 +48,12 @@ class Player {
         // Initialize the player's scale based on the game environment
         this.scale = { width: GameEnv.innerWidth, height: GameEnv.innerHeight };
 
-        // Set the initial size of the player
-        this.size = GameEnv.innerHeight / SCALE_FACTOR;
-
-        // Initialize the player's position and velocity
-        this.position = { x: 0, y: GameEnv.innerHeight - this.size };
-        this.velocity = { x: 0, y: 0 };
-
-        // Set the initial size and velocity of the player
-        this.resize();
-
         // Check if sprite data is provided
         if (sprite) {
+            this.scaleFactor = sprite.data.SCALE_FACTOR || SCALE_FACTOR;
+            this.stepFactor = sprite.data.STEP_FACTOR || STEP_FACTOR;
+            this.animationRate = sprite.data.ANIMATION_RATE || ANIMATION_RATE;
+    
             // Load the sprite sheet
             this.spriteSheet = new Image();
             this.spriteSheet.src = sprite.src;
@@ -71,8 +66,22 @@ class Player {
             this.spriteData = sprite.data;
         } else {
             // Default to red square
+            this.scaleFactor = SCALE_FACTOR;
+            this.stepFactor = STEP_FACTOR;
+            this.animationRate = ANIMATION_RATE;
+            // No sprite sheet for default
             this.spriteSheet = null;
         }
+
+        // Set the initial size of the player
+        this.size = GameEnv.innerHeight / this.scaleFactor;
+
+        // Initialize the player's position and velocity
+        this.position = { x: 0, y: GameEnv.innerHeight - this.size };
+        this.velocity = { x: 0, y: 0 };
+
+        // Set the initial size and velocity of the player
+        this.resize();
 
         // Bind event listeners to allow object movement
         this.bindEventListeners();
@@ -96,11 +105,11 @@ class Player {
         this.scale = newScale;
 
         // Recalculate the player's size based on the new scale
-        this.size = this.scale.height / SCALE_FACTOR;
+        this.size = this.scale.height / this.scaleFactor; 
 
         // Recalculate the player's velocity steps based on the new scale
-        this.xVelocity = this.scale.width / STEP_FACTOR;
-        this.yVelocity = this.scale.height / STEP_FACTOR;
+        this.xVelocity = this.scale.width / this.stepFactor;
+        this.yVelocity = this.scale.height / this.stepFactor;
 
         // Set the player's width and height to the new size (object is a square)
         this.width = this.size;
@@ -144,7 +153,7 @@ class Player {
 
             // Update the frame index for animation at a slower rate
             this.frameCounter++;
-            if (this.frameCounter % 50 === 0) {
+            if (this.frameCounter % this.animationRate === 0) {
                 this.frameIndex = (this.frameIndex + 1) % this.frameCount;
             }
         } else {

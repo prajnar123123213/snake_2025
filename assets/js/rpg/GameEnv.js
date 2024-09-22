@@ -100,12 +100,12 @@ class GameEnv {
     }
 
     /**
-     * Resizes the game environment by reinitializing it.
+     * Resizes the game environment by re-creating it.
      * 
      * @static
      */
     static resize() {
-        this.start();
+        this.create();
     }
 
     /**
