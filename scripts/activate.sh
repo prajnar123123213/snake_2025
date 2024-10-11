@@ -23,6 +23,9 @@ echo "=== GitHub pages build tools  ==="
 add_to_rc "# Ruby Gem Path"
 add_to_rc 'export GEM_HOME="$HOME/gems"'
 add_to_rc 'export PATH="$HOME/gems/bin:$PATH"'
+# Source the .bashrc file to apply changes immediately
+source ~/.bashrc
+
 echo "=== Gem install starting, thinking... ==="
 gem install jekyll bundler
 
@@ -38,9 +41,6 @@ code --install-extension ms-toolsai.jupyter --pre-release
 
 # GitHub Copilot Extension
 code --install-extension GitHub.copilot
-
-# Source the .bashrc file to apply changes immediately
-source ~/.bashrc
 
 # Verify the installation and check the Python version
 python --version
