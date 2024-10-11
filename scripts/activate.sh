@@ -59,5 +59,6 @@ source ./venv/bin/activate
 pip install -r requirements.txt
 bundle install
 
-# Restart the terminal
-echo "Restart the terminal to apply changes"
+# Activate session
+echo "source ~/.bashrc"
+echo "source venv/bin/activate"
