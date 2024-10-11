@@ -1,5 +1,5 @@
 export GIT_USER_NAME="jm1021"
-export GIT_USER_NAME="jmort1021@gmail.com"
+export GIT_USER_EMAIL="jmort1021@gmail.com"
 
 # Function to check if a line exists in run commands
 line_exists_in_rc() {
@@ -26,7 +26,7 @@ add_to_rc 'export PATH="$HOME/gems/bin:$PATH"'
 echo "=== Gem install starting, thinking... ==="
 gem install jekyll bundler
 
-# GitHub VSCode extensiions
+# GitHub VSCode extensions
 code --install-extension github.vscode-github-actions
 code --install-extension eamodio.gitlens
 
@@ -34,7 +34,30 @@ code --install-extension eamodio.gitlens
 code --install-extension ms-python.python --pre-release
 
 # Jupyter VSCode Extension
-code --install-extension ms-toolsai.jupyte --pre-releaser
+code --install-extension ms-toolsai.jupyter --pre-release
 
 # GitHub Copilot Extension
 code --install-extension GitHub.copilot
+
+# Source the .bashrc file to apply changes immediately
+source ~/.bashrc
+
+# Verify the installation and check the Python version
+python --version
+bundle --version
+
+# Create a virtual environment if it doesn't exist
+if [ -d "venv" ]; then
+    rm -rf venv
+fi
+python -m venv venv
+
+# Activate the virtual environment
+source ./venv/bin/activate
+
+# Install the required Python packages
+pip install -r requirements.txt
+bundle install
+
+# Restart the terminal
+echo "Restart the terminal to apply changes"
