@@ -17,6 +17,9 @@ This blog contains my journey into Coding.
     <a href="https://github.com/jm1021/john_2025">
         <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
     </a>
+    <a href="https://jm1021.github.io/john_2025/">
+        <img src="https://img.shields.io/badge/GitHub%20Pages-327FC7?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Pages">
+    </a>
     <a href="https://kasm.nighthawkcodingsociety.com/">
         <img src="https://img.shields.io/badge/KASM-0078D4?style=for-the-badge&logo=kasm&logoColor=white" alt="KASM">
     </a>
@@ -28,9 +31,11 @@ This blog contains my journey into Coding.
     </a>
 </div>
 
+<br>
+
 ### Game Progress
 
-> Here is my progress through game coding.
+> Here is my progress through game coding, click to see these online
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
     <a href="{{site.baseurl}}/snake" style="text-decoration: none;">
@@ -45,9 +50,11 @@ This blog contains my journey into Coding.
     </a>
 </div>
 
+<br>
+
 ### College Articulation
 
-> Here is my preparation for college topics
+> Here is my preparation for college topics, click to review my blogs
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
     <a href="{{site.baseurl}}/csse/javascript/fundamentals/variables" style="text-decoration: none;">

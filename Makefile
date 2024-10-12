@@ -7,7 +7,7 @@ SHELL = /bin/bash -c
 .SHELLFLAGS = -e # Exceptions will stop make, works on MacOS
 
 # Phony Targets, makefile housekeeping for below definitions
-.PHONY: default server issues convert clean stop
+.PHONY: default server convert clean stop
 
 # List all .ipynb files in the _notebooks directory
 NOTEBOOK_FILES := $(shell find _notebooks -name '*.ipynb')
@@ -15,9 +15,6 @@ NOTEBOOK_FILES := $(shell find _notebooks -name '*.ipynb')
 # Specify the target directory for the converted Markdown files
 DESTINATION_DIRECTORY = _posts
 MARKDOWN_FILES := $(patsubst _notebooks/%.ipynb,$(DESTINATION_DIRECTORY)/%_IPYNB_2_.md,$(NOTEBOOK_FILES))
-
-# Call server, then verify and start logging
-# ...
 
 # Call server, then verify and start logging
 default: server
@@ -69,7 +66,7 @@ $(DESTINATION_DIRECTORY)/%_IPYNB_2_.md: _notebooks/%.ipynb
 	@mkdir -p $(@D)
 	@python -c 'import sys; from scripts.convert_notebooks import convert_single_notebook; convert_single_notebook(sys.argv[1])' "$<"
 
-# Clean up project derived files, to avoid run issues stop is dependency
+# Clean up project derived files
 clean: stop
 	@echo "Cleaning converted IPYNB files..."
 	@find _posts -type f -name '*_IPYNB_2_.md' -exec rm {} +
