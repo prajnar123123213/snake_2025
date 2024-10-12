@@ -43,9 +43,19 @@ This blog contains my journey into Coding.
             Snake Game
         </div>
     </a>
-    <a href="{{site.baseurl}}/rpg" style="text-decoration: none;">
-        <div style="background-color: #0000FF; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Turtle RPG
+    <a href="{{site.baseurl}}/rpg/dot0" style="text-decoration: none;">
+        <div style="background-color: #FF0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Turtle v0.0
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/rpg/dot1" style="text-decoration: none;">
+        <div style="background-color: #FF8800; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Turtle v0.1
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/rpg/dot2" style="text-decoration: none;">
+        <div style="background-color: #FFFF00; color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Turtle v0.2
         </div>
     </a>
 </div>

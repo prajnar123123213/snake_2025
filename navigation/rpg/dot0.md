@@ -1,13 +1,13 @@
 ---
-layout: base
-title: RPG
-permalink: /rpg/
+layout: base 
+title: RPG v0.0
+permalink: /rpg/dot0
 ---
 
 <canvas id='gameCanvas'></canvas>
 
 <script type="module">
-    import GameControl from '{{site.baseurl}}/assets/js/rpg/GameControl.js';
+    import GameControl from '{{site.baseurl}}/assets/js/rpg/dot0/GameControl.js';
 
     // Background data
     const image_src = "{{site.baseurl}}/images/rpg/water.png";
