@@ -4,8 +4,6 @@ title: Snake
 permalink: /snake/
 ---
 
-{% include nav/home.html %}
-
 <style>
 
     body{
