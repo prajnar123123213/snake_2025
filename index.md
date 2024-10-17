@@ -78,3 +78,17 @@ This blog contains my journey into Coding.
         </div>
     </a>
 </div>
+
+<br>
+
+### Game Experiments
+
+> These are that make it to creation not necessarily will be added
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <a href="{{site.baseurl}}/experiment/message" style="text-decoration: none;">
+        <div style="background-color: #12ABFF; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Message Box 0.1
+        </div>
+    </a>
+</div>
