@@ -29,11 +29,12 @@ const GameControl = {
         // Prepare game objects for the level
         for (let object of gameLevel.objects) {
             if (!object.data) object.data = {};
-            else {
-                object.data.canvas = document.createElement("canvas");
-                object.data.canvas.id = object.data.name;
-                document.getElementById("gameCanvas").appendChild(object.data.canvas); 
-            } 
+            let canvas = document.createElement("canvas");
+            canvas.id = object.data.name || "default";
+            canvas.width = object.data.pixels.width || 0;
+            canvas.height = object.data.pixels.height || 0;
+            object.data.canvas = canvas; 
+            document.getElementById("gameCanvas").appendChild(canvas); 
             GameEnv.gameObjects.push(new object.class(object.data));
         }
         // Start the game loop
