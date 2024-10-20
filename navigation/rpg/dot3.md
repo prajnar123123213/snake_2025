@@ -26,7 +26,10 @@ permalink: /rpg/dot3
 
 </style>
 
-<canvas id='gameCanvas'></canvas>
+<div id="gameContainer">
+    <canvas id='gameCanvas'></canvas>
+</div>
+
 <div id="custom-alert" class="custom-alert">
     <button onclick="closeCustomAlert()" id="custom-alert-message"></button>
 </div>

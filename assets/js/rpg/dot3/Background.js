@@ -1,9 +1,11 @@
 import GameEnv from './GameEnv.js';
+import GameObject from './GameObject.js';
 
 /* Background class for primary background
 */
-export class Background {
+export class Background extends GameObject {
     constructor(data = null) {
+        super(data);
         if (data.src) {
             this.image = new Image();
             this.image.src = data.src;

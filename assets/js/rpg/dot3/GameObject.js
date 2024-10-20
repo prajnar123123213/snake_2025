@@ -9,7 +9,7 @@ class GameObject {
         this.canvas.width = data.pixels.width || 0;
         this.canvas.height = data.pixels.height || 0;
         this.ctx = this.canvas.getContext('2d');
-        document.getElementById("gameCanvas").appendChild(this.canvas); 
+        document.getElementById("gameContainer").appendChild(this.canvas); 
         // Set initial object properties 
         this.x = 0;
         this.y = 0;

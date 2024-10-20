@@ -127,23 +127,35 @@ class Player extends GameObject{
             // Sprite Sheet frame size: pixels = total pixels / total frames
             const frameWidth = this.spriteData.pixels.width / this.spriteData.orientation.columns;
             const frameHeight = this.spriteData.pixels.height / this.spriteData.orientation.rows;
-
+    
             // Sprite Sheet direction data source (e.g., front, left, right, back)
             const directionData = this.spriteData[this.direction];
-
+    
             // Sprite Sheet x and y declarations to store coordinates of current frame
             let frameX, frameY;
             // Sprite Sheet x and y current frame: coordinate = (index) * (pixels)
             frameX = (directionData.start + this.frameIndex) * frameWidth;
             frameY = directionData.row * frameHeight;
-
+    
+            // Set up the canvas dimensions and styles
+            this.canvas.width = frameWidth;
+            this.canvas.height = frameHeight;
+            this.canvas.style.width = `${this.width}px`;
+            this.canvas.style.height = `${this.height}px`;
+            this.canvas.style.position = 'absolute';
+            this.canvas.style.left = `${this.position.x}px`;
+            this.canvas.style.top = `${this.position.y}px`;
+    
+            // Clear the canvas before drawing
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    
             // Draw the current frame of the sprite sheet
-            GameEnv.ctx.drawImage(
+            this.ctx.drawImage(
                 this.spriteSheet,
                 frameX, frameY, frameWidth, frameHeight, // Source rectangle
-                this.position.x, this.position.y, this.width, this.height // Destination rectangle
+                0, 0, this.canvas.width, this.canvas.height // Destination rectangle
             );
-
+    
             // Update the frame index for animation at a slower rate
             this.frameCounter++;
             if (this.frameCounter % this.animationRate === 0) {
@@ -151,11 +163,11 @@ class Player extends GameObject{
             }
         } else {
             // Draw default red square
-            GameEnv.ctx.fillStyle = 'red';
-            GameEnv.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+            this.ctx.fillStyle = 'red';
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         }
     }
-
+    
     /**
      * Updates the player's position and ensures it stays within the canvas boundaries.
      * 
