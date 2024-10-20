@@ -58,6 +58,12 @@ This blog contains my journey into Coding.
             Turtle v0.2
         </div>
     </a>
+    <a href="{{site.baseurl}}/rpg/dot3" style="text-decoration: none;">
+        <div style="background-color: #880088; color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Turtle v0.3
+        </div>
+    </a>
+</div>
 </div>
 
 <br>
@@ -73,7 +79,7 @@ This blog contains my journey into Coding.
         </div>
     </a>
     <a href="{{site.baseurl}}/csse/javascript/fundamentals/data-types/" style="text-decoration: none;">
-        <div style="background-color: #FF0000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+        <div style="background-color: #000000; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
             Data Types
         </div>
     </a>
