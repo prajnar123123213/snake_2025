@@ -1,4 +1,5 @@
 import GameEnv from './GameEnv.js';
+import GameObject from './GameObject.js';
 
 // Define non-mutable constants as defaults
 const SCALE_FACTOR = 25; // 1/nth of the height of the canvas
@@ -39,13 +40,14 @@ const INIT_POSITION = { x: 0, y: 0 };
  * @method handleKeyDown - Handles key down events to change the player's velocity.
  * @method handleKeyUp - Handles key up events to stop the player's velocity.
  */
-class Player {
+class Player extends GameObject{
     /**
      * The constructor method is called when a new Player object is created.
      * 
      * @param {Object|null} data - The sprite data for the player. If null, a default red square is used.
      */
     constructor(data = null) {
+        super(data);
         // Initialize the player's scale based on the game environment
         this.scale = { width: GameEnv.innerWidth, height: GameEnv.innerHeight };
         
