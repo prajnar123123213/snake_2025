@@ -144,7 +144,7 @@ class Player extends GameObject{
             this.canvas.style.height = `${this.height}px`;
             this.canvas.style.position = 'absolute';
             this.canvas.style.left = `${this.position.x}px`;
-            this.canvas.style.top = `${this.position.y}px`;
+            this.canvas.style.top = `${this.position.y+GameEnv.top}px`;
     
             // Clear the canvas before drawing
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
