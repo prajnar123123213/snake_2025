@@ -275,7 +275,7 @@ permalink: /snake/
                 activeDot(snake[i].x, snake[i].y);
             }
             // Paint food
-            activeDot(food.x, food.y);
+            activeDot(food.x, food.y, true);
             // Debug
             //document.getElementById("debug").innerHTML = snake_dir + " " + snake_next_dir + " " + snake[0].x + " " + snake[0].y;
             // Recursive call after speed delay, déjà vu
@@ -327,10 +327,19 @@ permalink: /snake/
         }
         /* Dot for Food or Snake part */
         /////////////////////////////////////////////////////////////
-        let activeDot = function(x, y){
-            ctx.fillStyle = "#FFFFFF";
-            ctx.fillRect(x * BLOCK, y * BLOCK, BLOCK, BLOCK);
-        }
+let activeDot = function(x, y, isFood = false){
+    if (isFood) {
+        // Draw the emoji for food
+        ctx.font = `${BLOCK}px Arial`; // Adjust font size to match BLOCK size
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("🍪", x * BLOCK + BLOCK / 2, y * BLOCK + BLOCK / 2); // Center the emoji
+    } else {
+        // Draw the snake part
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillRect(x * BLOCK, y * BLOCK, BLOCK, BLOCK);
+    }
+};
         /* Random food placement */
         /////////////////////////////////////////////////////////////
         let addFood = function(){
