@@ -273,9 +273,9 @@ canvas {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         // Draw the snake and food
-        const headEmoji = "🎅🏼"; // Snake's head emoji
-        const bodyEmoji = "🛷"; // Snake's body emoji
-        const foodEmoji = "🎁"; // Food emoji (gift)
+        const headEmoji = "🎅🏼";
+        const bodyEmoji = "🛷";
+        const foodEmoji = "🎁";
         
         // Draw the snake
         for (let i = 0; i < snake.length; i++) {
