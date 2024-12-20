@@ -13,12 +13,13 @@ permalink: /snake/
         margin-right: auto;
     }
 
-    canvas{
-        display: none;
-        border-style: solid;
-        border-width: 10px;
-        border-color: #FFFFFF;
-    }
+canvas {
+    display: none;
+    border-style: solid;
+    border-width: 10px;
+    border-image: repeating-linear-gradient(45deg, #FF0000, #FF0000 10px, #FFFFFF 10px, #FFFFFF 20px) 1;
+}
+
     canvas:focus{
         outline: none;
     }
@@ -268,7 +269,7 @@ permalink: /snake/
         }
         // Repaint canvas
         ctx.beginPath();
-        ctx.fillStyle = "royalblue";
+        ctx.fillStyle = "white";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         // Draw the snake and food
